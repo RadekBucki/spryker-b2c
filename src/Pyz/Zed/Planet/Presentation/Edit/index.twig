@@ -2,6 +2,11 @@
 
 {% set widget_title = 'Edit planet' %}
 
+{% block action %}
+    {{ backActionButton('/planet/list', 'List Planets' | trans) }}
+    {{ createActionButton('/planet/create', 'Add New Planet' | trans) }}
+{% endblock %}
+
 {% block head_title widget_title %}
 {% block section_title widget_title %}
 
