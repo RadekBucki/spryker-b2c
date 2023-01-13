@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Zed\Planet\Business;
 
+use Generated\Shared\Transfer\PlanetTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
@@ -12,12 +13,18 @@ use Spryker\Zed\Kernel\Business\AbstractFacade;
 class PlanetFacade extends AbstractFacade implements PlanetFacadeInterface
 {
     /**
-     * @param \Generated\Shared\Transfer\QueueReceiveMessageTransfer[] $queueMessageTransfers
-     *
-     * @return \Generated\Shared\Transfer\QueueReceiveMessageTransfer[]
-     */
-    public function processMessages(array $queueMessageTransfers): array
-    {
-        // return $this->getFactory()->createExampleQueueMessageProcessor()->processMessages($queueMessageTransfers);
-    }
+	 * {@inheritDoc}
+	 *
+	 * @api
+	 *
+	 * @param \Generated\Shared\Transfer\PlanetTransfer $planetTransfer
+	 *
+	 * @return \Generated\Shared\Transfer\PlanetTransfer
+	 */
+	public function savePlanet(PlanetTransfer $planetTransfer): PlanetTransfer
+	{
+		return $this->getFactory()
+			->createPlanetSaver()
+			->save($planetTransfer);
+	}
 }
