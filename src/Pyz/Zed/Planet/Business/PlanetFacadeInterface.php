@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Zed\Planet\Business;
 
+use Generated\Shared\Transfer\PlanetCriteriaTransfer;
 use Generated\Shared\Transfer\PlanetTransfer;
 
 interface PlanetFacadeInterface
@@ -20,4 +21,15 @@ interface PlanetFacadeInterface
 	 * @return \Generated\Shared\Transfer\PlanetTransfer
   	 */
 	public function savePlanet(PlanetTransfer $planetTransfer): PlanetTransfer;
+
+    /**
+ 	 * Specification:
+	 * - returns Planet if exists based on PlanetCriteriaTransfer
+	 * - returns null if no such record is found
+	 *
+	 * @param \Generated\Shared\Transfer\PlanetCriteriaTransfer $planetCriteriaTransfer
+	 *
+	 * @return \Generated\Shared\Transfer\PlanetTransfer|null
+	 */
+	public function findPlanet(PlanetCriteriaTransfer $planetCriteriaTransfer): ?PlanetTransfer;
 }

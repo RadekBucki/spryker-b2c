@@ -6,6 +6,7 @@ namespace Pyz\Zed\Planet\Business\Reader;
 
 use Generated\Shared\Transfer\PlanetCollectionTransfer;
 use Generated\Shared\Transfer\PlanetCriteriaTransfer;
+use Generated\Shared\Transfer\PlanetTransfer;
 use Pyz\Zed\Planet\Persistence\PlanetRepositoryInterface;
 
 class PlanetReader implements PlanetReaderInterface
@@ -23,11 +24,10 @@ class PlanetReader implements PlanetReaderInterface
     /**
     * @param \Generated\Shared\Transfer\PlanetCriteriaTransfer $planetCriteriaTransfer
     *
-    * @return \Generated\Shared\Transfer\PlanetCollectionTransfer
+    * @return \Generated\Shared\Transfer\PlanetTransfer
     */
-    public function findPlanet(PlanetCriteriaTransfer $planetCriteriaTransfer): PlanetCollectionTransfer
+    public function findPlanet(PlanetCriteriaTransfer $planetCriteriaTransfer): PlanetTransfer
     {
-        // ToDo: Implementation
-        // $this->planetRepository->findPlanet($planetCriteriaTransfer);
+		return $this->planetRepository->findPlanetById($planetCriteriaTransfer->getIdPlanet());
     }
 }

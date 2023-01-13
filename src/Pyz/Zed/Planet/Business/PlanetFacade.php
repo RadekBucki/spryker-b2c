@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Zed\Planet\Business;
 
+use Generated\Shared\Transfer\PlanetCriteriaTransfer;
 use Generated\Shared\Transfer\PlanetTransfer;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
@@ -26,5 +27,21 @@ class PlanetFacade extends AbstractFacade implements PlanetFacadeInterface
 		return $this->getFactory()
 			->createPlanetSaver()
 			->save($planetTransfer);
+	}
+
+    /**
+	 * {@inheritDoc}
+	 *
+	 * @api
+	 *
+	 * @param int $idPlanet
+	 *
+	 * @return \Generated\Shared\Transfer\PlanetTransfer|null
+	 */
+	public function findPlanet(PlanetCriteriaTransfer $planetCriteriaTransfer): ?PlanetTransfer
+	{
+		return $this->getFactory()
+			->createPlanetReader()
+			->findPlanet($planetCriteriaTransfer);
 	}
 }

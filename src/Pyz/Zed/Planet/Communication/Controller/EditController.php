@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pyz\Zed\Planet\Communication\Controller;
 
+use Generated\Shared\Transfer\PlanetCriteriaTransfer;
 use Generated\Shared\Transfer\PlanetTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -22,15 +23,18 @@ class EditController extends AbstractController
      */
     public function indexAction(Request $request): RedirectResponse|array
     {
-        // $idPlanet = $this->castId($request->query->get('id-planet'));
-        $planetTransfer = (new PlanetTransfer()) // TODO add business logic to retrieve Planet by id
-        ->setName('Jupiter')
-            ->setInterestingFact('Fifth planet from the Sun and the largest in the Solar System.');
+        $idPlanet = $this->castId($request->query->get('id-planet'));
+
+        $planetTransfer = $this->getFacade()->findPlanet(
+            (new PlanetCriteriaTransfer())->setIdPlanet($idPlanet)
+        );
         $planetForm = $this->getFactory()
             ->createPlanetForm($planetTransfer)
             ->handleRequest($request);
         if ($planetForm->isSubmitted() && $planetForm->isValid()) {
-            $this->addSuccessMessage('Planet was updated. Well not yet :)');
+            $this->getFacade()
+				->savePlanet($planetForm->getData());
+            $this->addSuccessMessage('Planet was updated.');
             return $this->redirectResponse('/planet/list');
         }
         return $this->viewResponse([

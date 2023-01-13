@@ -28,7 +28,5 @@
 
     <transfer name="PlanetResponse">
         <property name="idPlanet" type="int"/>
-        <property name="PlanetTestString" type="string"/>
-        <property name="PlanetTestInt" type="int"/>
     </transfer>
 </transfers>
