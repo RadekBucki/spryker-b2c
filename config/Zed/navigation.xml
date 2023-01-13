@@ -518,4 +518,18 @@
             </storage-gui>
         </pages>
     </maintenance>
+    <planet>
+        <label>Planets</label>
+        <title>Planets</title>
+        <pages>
+            <planet>
+                <label>Planets</label>
+                <title>Planets</title>
+                <bundle>planet</bundle>
+                <controller>list</controller>
+                <action>index</action>
+                <visible>1</visible>
+            </planet>
+        </pages>
+    </planet>
 </config>
