@@ -13,13 +13,38 @@ use Spryker\Client\Kernel\AbstractClient;
 class PlanetsRestApiClient extends AbstractClient implements PlanetsRestApiClientInterface
 {
     /**
-     * @api
+     * @param \Generated\Shared\Transfer\PlanetCollectionTransfer $planetCollectionTransfer
+     *
      * @return \Generated\Shared\Transfer\PlanetCollectionTransfer
+     * @api
      */
     public function getPlanetCollection(PlanetCollectionTransfer $planetCollectionTransfer): PlanetCollectionTransfer
     {
         return $this->getFactory()
             ->createPlanetZedStub()
             ->getPlanetCollection($planetCollectionTransfer);
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return array
+     */
+    public function getPlanetByName(string $name): array
+    {
+        $searchQuery = $this->getFactory()
+            ->createPlanetQueryPlugin($name);
+
+        $resultFormatters = $this->getFactory()
+            ->getSearchQueryFormatters();
+
+        $searchResults = $this->getFactory()
+            ->getSearchClient()
+            ->search(
+                $searchQuery,
+                $resultFormatters
+            );
+
+        return $searchResults['planet'] ?? [];
     }
 }

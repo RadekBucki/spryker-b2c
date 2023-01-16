@@ -13,4 +13,11 @@ interface PlanetsRestApiClientInterface
      * @return \Generated\Shared\Transfer\PlanetCollectionTransfer
      */
     public function getPlanetCollection(PlanetCollectionTransfer $planetCollectionTransfer): PlanetCollectionTransfer;
+
+    /**
+     * @param string $name
+     *
+     * @return array
+     */
+    public function getPlanetByName(string $name): array;
 }

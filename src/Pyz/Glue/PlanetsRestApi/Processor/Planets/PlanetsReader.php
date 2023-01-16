@@ -2,6 +2,7 @@
 
 namespace Pyz\Glue\PlanetsRestApi\Processor\Planets;
 
+use ArrayObject;
 use Generated\Shared\Transfer\PlanetCollectionTransfer;
 use Pyz\Client\PlanetsRestApi\PlanetsRestApiClientInterface;
 use Pyz\Glue\PlanetsRestApi\PlanetsRestApiConfig;
@@ -45,20 +46,33 @@ class PlanetsReader implements PlanetsReaderInterface
      */
     public function getPlanets(RestRequestInterface $restRequest): RestResponseInterface
     {
+        $name = $restRequest->getHttpRequest()->get('name');
         $restResponse = $this->restResourceBuilder->createRestResponse();
-        $planetCollectionTransfer = $this->planetsRestApiClient->getPlanetCollection(new PlanetCollectionTransfer());
-        foreach (
-            $planetCollectionTransfer->getPlanets()
-            as $planetTransfer
-        ) {
+        if ($name) {
+            $planet = $this->planetsRestApiClient->getPlanetByName($name);
             $restResource = $this->restResourceBuilder->createRestResource(
                 PlanetsRestApiConfig::RESOURCE_PLANETS,
-                $planetTransfer->getIdPlanet(),
+                1,
                 $this->planetMapper->mapPlanetDataToPlanetRestAttributes(
-                    $planetTransfer->toArray()
+                    $planet
                 )
             );
             $restResponse->addResource($restResource);
+        } else {
+            $planetCollectionTransfer = $this->planetsRestApiClient->getPlanetCollection(new PlanetCollectionTransfer());
+            foreach (
+                $planetCollectionTransfer->getPlanets()
+                as $planetTransfer
+            ) {
+                $restResource = $this->restResourceBuilder->createRestResource(
+                    PlanetsRestApiConfig::RESOURCE_PLANETS,
+                    $planetTransfer->getIdPlanet(),
+                    $this->planetMapper->mapPlanetDataToPlanetRestAttributes(
+                        $planetTransfer->toArray()
+                    )
+                );
+                $restResponse->addResource($restResource);
+            }
         }
         return $restResponse;
     }
