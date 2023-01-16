@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Zed\Planet\Business\Reader;
 
+use Generated\Shared\Transfer\PlanetCollectionTransfer;
 use Generated\Shared\Transfer\PlanetCriteriaTransfer;
 use Generated\Shared\Transfer\PlanetTransfer;
 
@@ -15,4 +16,6 @@ interface PlanetReaderInterface
      * @return \Generated\Shared\Transfer\PlanetTransfer
      */
     public function findPlanet(PlanetCriteriaTransfer $planetCriteriaTransfer): PlanetTransfer;
+
+    public function getAllPlanets(): PlanetCollectionTransfer;
 }

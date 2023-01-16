@@ -30,4 +30,12 @@ class PlanetReader implements PlanetReaderInterface
     {
 		return $this->planetRepository->findPlanetById($planetCriteriaTransfer->getIdPlanet());
     }
+
+    /**
+     * @return \Generated\Shared\Transfer\PlanetCollectionTransfer
+     */
+    public function getAllPlanets(): PlanetCollectionTransfer
+    {
+        return $this->planetRepository->getAllPlanets();
+    }
 }
