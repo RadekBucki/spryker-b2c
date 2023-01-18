@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Zed\Planet\Communication\Controller;
 
-use Generated\Shared\Transfer\PlanetTransfer;
+use Generated\Shared\Transfer\PlanetCollectionTransfer;
 use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 
 /**
@@ -14,13 +14,11 @@ use Spryker\Zed\Kernel\Communication\Controller\AbstractGatewayController;
 class GatewayController extends AbstractGatewayController
 {
     /**
-     * @param \Generated\Shared\Transfer\PlanetTransfer $planetTransfer
-     *
-     * @return \Generated\Shared\Transfer\PlanetTransfer $planetTransfer
+     * @return \Generated\Shared\Transfer\PlanetCollectionTransfer
      */
-    public function customAction(PlanetTransfer $planetTransfer): PlanetTransfer
+    public function getPlanetCollectionAction(): PlanetCollectionTransfer
     {
         return $this->getFacade()
-                ->customAction($planetTransfer);
+            ->getAllPlanets();
     }
 }

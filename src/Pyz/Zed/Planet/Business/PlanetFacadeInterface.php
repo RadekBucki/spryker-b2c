@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 namespace Pyz\Zed\Planet\Business;
 
+use Generated\Shared\Transfer\PlanetCollectionTransfer;
 use Generated\Shared\Transfer\PlanetCriteriaTransfer;
 use Generated\Shared\Transfer\PlanetTransfer;
 
@@ -32,4 +33,12 @@ interface PlanetFacadeInterface
 	 * @return \Generated\Shared\Transfer\PlanetTransfer|null
 	 */
 	public function findPlanet(PlanetCriteriaTransfer $planetCriteriaTransfer): ?PlanetTransfer;
+
+    /**
+ 	 * Specification:
+	 * - returns all Planets in PlanetCollection
+     *
+     * @return \Generated\Shared\Transfer\PlanetCollectionTransfer
+     */
+    public function getAllPlanets(): PlanetCollectionTransfer;
 }

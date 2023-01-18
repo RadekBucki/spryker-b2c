@@ -169,6 +169,11 @@ class DataImportConfig extends SprykerDataImportConfig
     public const IMPORT_TYPE_COMBINED_PRODUCT_GROUP = 'combined-product-group';
 
     /**
+     * @var string
+     */
+    public const IMPORT_TYPE_PLANET = 'planet';
+
+    /**
      * @return string|null
      */
     public function getDefaultYamlConfigPath(): ?string

@@ -7,6 +7,7 @@
 
 namespace Pyz\Zed\Event;
 
+use Pyz\Zed\PlanetSearch\Communication\Plugin\Event\Subscriber\PlanetSearchEventSubscriber;
 use Pyz\Zed\ProductStorage\Communication\Plugin\Event\Subscriber\ProductStorageEventSubscriber;
 use Spryker\Zed\AvailabilityNotification\Communication\Plugin\Event\Subscriber\AvailabilityNotificationSubscriber;
 use Spryker\Zed\AvailabilityStorage\Communication\Plugin\Event\Subscriber\AvailabilityStorageEventSubscriber;
@@ -110,6 +111,7 @@ class EventDependencyProvider extends SprykerEventDependencyProvider
         $eventSubscriberCollection->add(new ProductConcretePageSearchProductImageEventSubscriber());
         $eventSubscriberCollection->add(new ConfigurableBundleTemplatePageSearchEventSubscriber());
         $eventSubscriberCollection->add(new ConfigurableBundleTemplateImagePageSearchEventSubscriber());
+        $eventSubscriberCollection->add(new PlanetSearchEventSubscriber());
 
         $eventSubscriberCollection->add(new PublisherSubscriber());
 

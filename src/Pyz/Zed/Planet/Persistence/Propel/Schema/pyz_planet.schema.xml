@@ -7,5 +7,8 @@
         <column name="id_planet" required="true" type="INTEGER" autoIncrement="true" primaryKey="true"/>
         <column name="name" required="true" type="VARCHAR" size="50"/>
         <column name="interesting_fact" type="VARCHAR" size="255"/>
+        <behavior name="event">
+            <parameter name="pyz_planet_all" column="*"/>
+        </behavior>
     </table>
 </database>

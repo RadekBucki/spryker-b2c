@@ -9,15 +9,8 @@
 		<property name="interestingFact" type="string"/>
     </transfer>
 
-    <transfer name="PlanetCollection">
-        <property name="PlanetTestCollection" type="Planet[]" singular="planet"/>
-    </transfer>
-
     <transfer name="PlanetCriteria">
         <property name="idPlanet" type="int"/>
-        <property name="PlanetTestString" type="string"/>
-        <property name="PlanetTestInt" type="int"/>
-        <property name="withTest" type="bool"/>
     </transfer>
 
     <transfer name="PlanetRequest">
